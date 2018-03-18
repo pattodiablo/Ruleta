@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Refinery Builder</title>
+        <script src="lib/phaser.min.js"></script>
+        <script src="lib/IniciarJuego.js"></script>
+        <script src="lib/balancin.js"></script>
+      
+
+
+
+
+
+    </head>
+    <body>
+
+    <script type="text/javascript">
+
+		var MyGame = {};
+
+
+
+		MyGame.StateA = function (game) {
+			console.log('State:Inicio')
+
+		
+		};
+
+		MyGame.StateA.prototype = Object.create(Phaser.State.prototype);
+		MyGame.StateA.prototype.constructor = MyGame.StateA;
+		
+        MyGame.StateA.prototype.preload = function () {
+
+            this.load.image('number0', 'assets/number0.png');
+            this.load.image('number0', 'assets/number0.png');
+            this.load.image('number0', 'assets/number0.png');
+            this.load.image('number0', 'assets/number0.png');
+            this.load.image('number0', 'assets/number0.png');
+            this.load.image('number0', 'assets/number0.png');
+            this.load.image('number0', 'assets/number0.png');
+            this.load.image('number0', 'assets/number0.png');
+            this.load.image('number0', 'assets/number0.png');
+            this.load.image('number0', 'assets/number0.png');
+
+
+        };
+
+		MyGame.StateA.prototype.init = function () {
+			
+
+			};
+		
+		MyGame.StateA.prototype.create = function () {
+			
+			
+
+ 			
+		};
+
+
+	
+		MyGame.StateA.prototype.update = function () {
+		
+		
+		
+		};
+
+		MyGame.StateA.prototype.render = function () {
+		
+		};
+
+	var game = new Phaser.Game(600, 600, Phaser.AUTO, 'container');  
+
+	game.state.add('Inicio', MyGame.StateA);  
+	game.state.start('Inicio');
+
+
+    </script>
+
+    <script src="node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
+<script>
+var socket = io('http://192.168.100.5:3000');
+
+
+
+</script>
+
+  
+    </body>
+</html>
