@@ -4,8 +4,7 @@
         <meta charset="UTF-8" />
         <title>Refinery Builder</title>
         <script src="lib/phaser.min.js"></script>
-        <script src="lib/IniciarJuego.js"></script>
-        <script src="lib/balancin.js"></script>
+
       
 
 
@@ -32,29 +31,57 @@
 		
         MyGame.StateA.prototype.preload = function () {
 
-            this.load.image('number0', 'assets/number0.png');
-            this.load.image('number0', 'assets/number0.png');
-            this.load.image('number0', 'assets/number0.png');
-            this.load.image('number0', 'assets/number0.png');
-            this.load.image('number0', 'assets/number0.png');
-            this.load.image('number0', 'assets/number0.png');
-            this.load.image('number0', 'assets/number0.png');
-            this.load.image('number0', 'assets/number0.png');
-            this.load.image('number0', 'assets/number0.png');
-            this.load.image('number0', 'assets/number0.png');
+            game.load.image('number0', 'assets/number0.png');
+            game.load.image('number1', 'assets/number1.png');
+            game.load.image('number2', 'assets/number2.png');
+            game.load.image('number3', 'assets/number3.png');
+            game.load.image('number4', 'assets/number4.png');
+            game.load.image('number5', 'assets/number5.png');
+            game.load.image('number6', 'assets/number6.png');
+            game.load.image('number7', 'assets/number7.png');
+            game.load.image('number8', 'assets/number8.png');
+            game.load.image('number9', 'assets/number9.png');
 
 
         };
 
 		MyGame.StateA.prototype.init = function () {
 			
+			var numeros;
+			var currentNumber;
+			var lastNumber;
 
 			};
 		
 		MyGame.StateA.prototype.create = function () {
 			
+		numeros = new Array('number0','number1','number2','number3','number4','number5','number6','number7','number8','number9');
+		lastNumber = new Array();
+		currentNumber = 0;
+
+
+		 game.time.events.loop(Phaser.Timer.SECOND, cambiarNumeros, this);
+
+		function cambiarNumeros(){
+
+			if(lastNumber.length>0){
+
+				lastNumber[0].kill();
+				lastNumber.splice(0);	
+			}
 			
 
+		currentNumber++
+		if(currentNumber>=10){
+			currentNumber = 0;
+		}
+
+		this.number = game.add.sprite(this.game.world.centerX, this.game.world.centerY, numeros[currentNumber]);
+		this.number.anchor.x = 0.5;
+		this.number.anchor.y = 0.5;
+		lastNumber.push(this.number);
+
+		}
  			
 		};
 
@@ -69,6 +96,7 @@
 		MyGame.StateA.prototype.render = function () {
 		
 		};
+		
 
 	var game = new Phaser.Game(600, 600, Phaser.AUTO, 'container');  
 
@@ -80,7 +108,7 @@
 
     <script src="node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
 <script>
-var socket = io('http://192.168.100.5:3000');
+//var socket = io('http://192.168.100.5:3000');
 
 
 
