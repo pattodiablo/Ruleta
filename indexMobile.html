@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Refinery Builder</title>
+        <script src="lib/phaser.min.js"></script>
+   <script src="node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
+      
+
+
+
+
+
+    </head>
+    <body>
+
+    <script type="text/javascript">
+
+		var MyGame = {};
+
+
+
+		MyGame.StateA = function (game) {
+			console.log('State:Inicio')
+
+		
+		};
+
+		MyGame.StateA.prototype = Object.create(Phaser.State.prototype);
+		MyGame.StateA.prototype.constructor = MyGame.StateA;
+		
+        MyGame.StateA.prototype.preload = function () {
+
+            game.load.image('bigRedBtn', 'assets/bigRedBtn.png');
+           
+
+
+        };
+
+		MyGame.StateA.prototype.init = function () {
+			 game.stage.disableVisibilityChange = true;
+
+			var Client;
+
+			
+
+			};
+		
+		MyGame.StateA.prototype.create = function () {
+			
+		this.Client={};		
+		this.Client.socket = io.connect('http://localhost:3000');	
+		this.button = game.add.button(this.game.world.centerX, this.game.world.centerY, 'bigRedBtn', this.actionOnClick, this, 2, 1, 0);	
+		this.button.anchor.x = 0.5;
+		this.button.anchor.y = 0.5;
+
+		
+		
+ 			
+		};
+
+		MyGame.StateA.prototype.actionOnClick = function () {
+			console.log("Socketeando al server")
+
+			this.Client.socket.emit("ask forPlayers","wadafuck");
+
+		};
+	
+		MyGame.StateA.prototype.update = function () {
+		
+		
+		
+		};
+
+		MyGame.StateA.prototype.render = function () {
+		
+		};
+		
+
+	var game = new Phaser.Game(600, 600, Phaser.AUTO, 'container');  
+
+	game.state.add('Inicio', MyGame.StateA);  
+	game.state.start('Inicio');
+
+
+    </script>
+
+ 
+<script>
+
+
+
+
+</script>
+
+  
+    </body>
+</html>

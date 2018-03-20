@@ -6,7 +6,7 @@ var allClients=[];
 var fullEntities;
 var conexionCounter=true;
 
-app.get('/noderoid', function(req, res){
+app.get('/ruleta', function(req, res){
   console.log('a user try to connect by infront');
 });
 
@@ -59,36 +59,14 @@ io.on('connection', function(socket){
     
   });
 
+ 
 
-  socket.on('playerMove', function(x,y,nombre,flip){
-
-          socket.broadcast.emit("entityMoved",x,y,nombre,flip);
-         
-      });
-    
-  socket.on('moveLeft', function(nombre,animacion){
-    
-         socket.broadcast.emit("entityPressed",1,nombre,animacion);
-      });
-
-  socket.on('moveRight', function(nombre,animacion){
-         
-         socket.broadcast.emit("entityPressed",2,nombre,animacion);
-      });
-
-socket.on('notMoved', function(nombre,animacion){
-       
-         socket.broadcast.emit("entityPressed",0,nombre,animacion);
-      });
-
-socket.on('jumping', function(nombre,animacion){
-         
-         socket.broadcast.emit("entityPressed",3,nombre,animacion);
-      });
+ 
 
    socket.on('ask forPlayers', function(netName){
      console.log("----------------------------------------------");
      console.log('asking for players ');
+      console.log(netName);
      populate(netName);
   });
 
