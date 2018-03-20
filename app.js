@@ -6,11 +6,13 @@ var allClients=[];
 var fullEntities;
 var conexionCounter=true;
 
+
 app.get('/ruleta', function(req, res){
   console.log('a user try to connect by infront');
 });
 
 io.on('connection', function(socket){
+  var estado=true;
   console.log("conexionCounter "+ conexionCounter);
   if(conexionCounter){
     console.log("----------------------------------------------");
@@ -28,19 +30,13 @@ io.on('connection', function(socket){
   console.log("-----------------conexion----------------------");
   console.log("                                              ");
   console.log('usuario conectado ' + socket.id);
-  console.log("numero de usuarios conectados: " + allClients.length);
+
   
   
 
     socket.on('disconnect', function(){
     console.log("---------------desconeccion-------------------");
-    console.log("                                              ");
-    var i = allClients.indexOf(socket);
-    allClients.splice(i, 1); 
-    console.log('usuario desconectado: '+ socket.id);
-    console.log("numero de usuarios conectados:  " + allClients.length);
-    console.log("numero de NetNames:  " + allNetNames.length);
-    io.emit("deletePlayer",socket.id);
+    
     
       
   });
@@ -61,13 +57,28 @@ io.on('connection', function(socket){
 
  
 
- 
-
    socket.on('ask forPlayers', function(netName){
      console.log("----------------------------------------------");
      console.log('asking for players ');
       console.log(netName);
      populate(netName);
+  });
+
+var bool=false;
+  socket.on('btn pressed', function(){
+     console.log("----------------------------------------------");
+     console.log('boton presionado ');
+    
+      if(bool){
+
+        bool=false
+      }else{
+
+        bool=true;
+      }
+
+     console.log(bool);
+      io.emit("StopTheShit",bool);
   });
 
 

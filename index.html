@@ -5,7 +5,7 @@
         <title>Refinery Builder</title>
         <script src="lib/phaser.min.js"></script>
 
-      
+        <script src="node_modules/socket.io-client/dist/socket.io.js"></script>
 
 
 
@@ -46,30 +46,59 @@
         };
 
 		MyGame.StateA.prototype.init = function () {
-			
+			 game.stage.disableVisibilityChange = true;
+			var Client;
 			var numeros;
 			var currentNumber;
 			var lastNumber;
+	
 
 			};
 		
 		MyGame.StateA.prototype.create = function () {
 			
+
+		this.Client={};		
+		this.Client.socket = io.connect('http://10.96.160.35:3000');	
+
+		
+		this.Client.socket.on('StopTheShit', function(estado){
+		     console.log("----------------------------------------------");
+		     console.log('Tratando de detener la Shit');
+		     console.log(estado);
+		  	
+		  	if(estado){
+
+		  		  game.paused = true;
+		  	}else{
+		  		 game.paused = false;
+
+		  	}
+		    
+	
+		  });
+
+
+
 		numeros = new Array('number0','number1','number2','number3','number4','number5','number6','number7','number8','number9');
 		lastNumber = new Array();
 		currentNumber = 0;
 
 
-		 game.time.events.loop(80, cambiarNumeros, this);
+		game.time.events.loop(80, this.cambiarNumeros, this);
+		
 
-		function cambiarNumeros(){
+	
+		};
 
-			if(lastNumber.length>0){
+
+MyGame.StateA.prototype.cambiarNumeros = function () {
+	
+		if(lastNumber.length>0){
 
 				lastNumber[0].kill();
 				lastNumber.splice(0);	
 			}
-			
 
 		currentNumber++
 		if(currentNumber>=10){
@@ -80,11 +109,16 @@
 		this.number.anchor.x = 0.5;
 		this.number.anchor.y = 0.5;
 		lastNumber.push(this.number);
-
-		}
- 			
+		
 		};
 
+
+
+		MyGame.StateA.prototype.timeStop = function () {
+		
+		game.time.events.stop();
+		
+		};
 
 	
 		MyGame.StateA.prototype.update = function () {
@@ -106,9 +140,9 @@
 
     </script>
 
-    <script src="node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
+   
 <script>
-//var socket = io('http://192.168.100.5:3000');
+
 
 
 

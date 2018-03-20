@@ -1,0 +1,33 @@
+{
+  "name": "ruleta",
+  "version": "1.0.0",
+  "description": "conexion entre usuarios y host",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pattodiablo/Ruleta.git"
+  },
+  "keywords": [
+    "ruleta",
+    "con",
+    "node",
+    "y",
+    "phaser"
+  ],
+  "author": "Patricio Leon",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/pattodiablo/Ruleta/issues"
+  },
+  "homepage": "https://github.com/pattodiablo/Ruleta#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "socket.io": "^2.0.4"
+  }
+}

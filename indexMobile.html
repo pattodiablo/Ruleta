@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <title>Refinery Builder</title>
         <script src="lib/phaser.min.js"></script>
-   <script src="node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
+  <script src="node_modules/socket.io-client/dist/socket.io.js"></script>
       
 
 
@@ -49,7 +49,7 @@
 		MyGame.StateA.prototype.create = function () {
 			
 		this.Client={};		
-		this.Client.socket = io.connect('http://localhost:3000');	
+		this.Client.socket = io.connect('http://10.96.160.35:3000');	
 		this.button = game.add.button(this.game.world.centerX, this.game.world.centerY, 'bigRedBtn', this.actionOnClick, this, 2, 1, 0);	
 		this.button.anchor.x = 0.5;
 		this.button.anchor.y = 0.5;
@@ -62,7 +62,7 @@
 		MyGame.StateA.prototype.actionOnClick = function () {
 			console.log("Socketeando al server")
 
-			this.Client.socket.emit("ask forPlayers","wadafuck");
+			this.Client.socket.emit("btn pressed");
 
 		};
 	
