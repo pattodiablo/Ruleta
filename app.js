@@ -7,7 +7,7 @@ var fullEntities;
 var conexionCounter=true;
 
 
-app.get('/ruleta', function(req, res){
+app.get('/Ruleta', function(req, res){
   console.log('a user try to connect by infront');
 });
 
